@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 import { sequelize } from "../database/database";
 
-const Project = sequelize.define(
-  "projects",
+const User = sequelize.define(
+  "users",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -11,14 +11,11 @@ const Project = sequelize.define(
     name: {
       type: Sequelize.TEXT,
     },
-    priority: {
+    age: {
       type: Sequelize.INTEGER,
     },
     description: {
       type: Sequelize.TEXT,
-    },
-    deliverydate: {
-      type: Sequelize.DATE,
     },
   },
   {
@@ -26,7 +23,4 @@ const Project = sequelize.define(
   }
 );
 
-Project.hasMany(Task, { foreingKey: "projectId", sourceKey: "id" });
-Task.belongsTo(Project, { foreingKey: "projectId", sourceKey: "id" });
-
-export default Project;
+export default User;
