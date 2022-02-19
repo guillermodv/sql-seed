@@ -4,18 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon node index.js"
+    "dev": "nodemon src/index.js --exec babel-node",
+    "start": "nodemon node index.js",
+    "build": "babel src --out-dir dist"
   },
   "author": "GDV",
   "license": "MIT",
   "dependencies": {
+    "@babel/node": "^7.16.8",
+    "@babel/polyfill": "^7.12.1",
+    "babel-node": "0.0.1-security",
     "body-parser": "^1.19.1",
     "express": "^4.17.2",
-    "mysql2": "^2.3.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3",
     "sequelize": "^6.15.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
     "nodemon": "^2.0.15"
   }
 }
