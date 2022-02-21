@@ -1,5 +1,18 @@
 import User from "../models/Users";
 
+export async function deleteUser(req, res) {
+  try {
+    const item = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json({ message: "User deleted" });
+  } catch (error) {
+    res.json({ message: "Error trying to delete an user" });
+  }
+}
+
 export async function getAll(req, res) {
   try {
     const item = await User.findAll();
@@ -12,11 +25,7 @@ export async function getAll(req, res) {
 export async function create(req, res) {
   console.log(req.body);
   try {
-    let newItem = await User.create({
-      name: "a name",
-      age: 1,
-      description: "a desc",
-    });
+    let newItem = await User.create(req.body);
     if (newItem) {
       res.json({
         message: "Success",
@@ -29,5 +38,17 @@ export async function create(req, res) {
       message: "Something goes wrong",
     });
   }
-  res.send("received");
+}
+
+export async function modifyUser(req, res) {
+  try {
+    const item = await User.updateAttributes(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json({ message: "changed" });
+  } catch (error) {
+    res.json({ message: "Error trying to change an user" });
+  }
 }
